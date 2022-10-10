@@ -18,39 +18,37 @@ class RandomStepper extends StatefulWidget {
 class _RandomStepperState extends State<RandomStepper> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: List.generate(widget.steps?.length ?? 0, (index) {
-            var step = widget.steps;
-            return GestureDetector(
-              onTap: (){
-                widget.onStepTap!(index);
-              },
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  StepHeader(
-                    title: step?[index]["title"],
-                    subtitle: step?[index]["subtitle"],
-                    index: index,
-                    isActive: widget.currentStep! > index - 1,
-                    isComplete: widget.currentStep! > index,
-                  ),
-                  StepContent(
-                    content: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(step?[index]["content"])),
-                    index: index,
-                    currentStep: widget.currentStep,
-                    controls: widget.controls,
-                    isLast: (index + 1) == step?.length,
-                  )
-                ],
-              ),
-            );
-          })),
-    );
+    return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: List.generate(widget.steps?.length ?? 0, (index) {
+          var step = widget.steps;
+          return InkWell(
+            splashColor: Colors.transparent,
+            onTap: (){
+              widget.onStepTap!(index);
+            },
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                StepHeader(
+                  title: step?[index]["title"],
+                  subtitle: step?[index]["subtitle"],
+                  index: index,
+                  isActive: widget.currentStep! > index - 1,
+                  isComplete: widget.currentStep! > index,
+                ),
+                StepContent(
+                  content: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(step?[index]["content"])),
+                  index: index,
+                  currentStep: widget.currentStep,
+                  controls: widget.controls,
+                  isLast: (index + 1) == step?.length,
+                )
+              ],
+            ),
+          );
+        }));
   }
 }

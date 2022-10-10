@@ -19,7 +19,7 @@ class StepContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 12),
+      margin: EdgeInsets.symmetric(horizontal: 28),
       decoration: BoxDecoration(
           border: !isLast! ? Border(left: BorderSide(color: Colors.grey.shade400, width: 1)) : null) ,
       child: Row(
